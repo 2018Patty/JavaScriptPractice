@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Handlers</title>
+    <script>
+      function hello() {
+        let heading = document.querySelector("#heading").innerHTML;
+        //console.log(heading);
+        if (heading == "Hello World!") {
+          document.querySelector("#heading").innerHTML = "Good Bye";
+        } else {
+          document.querySelector("#heading").innerHTML = "Hello World!";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("button").onclick = hello;
+      });
+    </script>
+  </head>
+  <body>
+    <h1 id="heading">Hello World!</h1>
+    <button>Click Me</button>
+  </body>
+</html>

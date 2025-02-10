@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Event Handler</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").onsubmit = function () {
+          let task = document.querySelector("#task").value;
+
+          let listItem = document.createElement("li");
+          listItem.innerHTML = task;
+
+          document.querySelector("#todoList").append(listItem);
+
+          //document.querySelector("submit").disabled = true;?
+
+          //stop submitting form
+          return false;
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <h1>To do list:</h1>
+    <ul id="todoList"></ul>
+    <form>
+      <input type="text" id="task" />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

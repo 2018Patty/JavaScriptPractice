@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic JavaScript</title>
+    <script>
+      let x = 10;
+      let y = 20;
+      let sum = x + y;
+      //document.write(`sum = ${sum}`);
+
+      let name = "Peter";
+      //document.write("Hello " + name);
+
+      let number = -20;
+      if (number >= 0) {
+        //alert("number = " + number + " : positive");
+      } else {
+        //alert("number = " + number + " : negative");
+      }
+
+      let score = new Array(3);
+      score[0] = 10;
+      score[1] = 20;
+      score[2] = 30;
+
+      // alert(score[2]);
+
+      let weight = [50, 45, 85.5, 60];
+      //alert(weight[0]);
+
+      let amount = 0;
+      //0,1,2,3
+      for (var i = 0; i < weight.length; i++) {
+        amount += weight[i];
+      }
+
+      let avg = amount / weight.length;
+      alert("weight average = " + avg);
+
+      let amount2 = 0;
+      weight.forEach(function (w) {
+        amount2 += w;
+      });
+      let avg2 = amount2 / weight.length;
+      alert("weight average = " + avg2);
+
+
+      
+    </script>
+  </head>
+  <body>
+    <h1>Hello!</h1>
+  </body>
+</html>

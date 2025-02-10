@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch(
+          "http://api.exchangeratesapi.io/v1/latest?access_key=6750a8af1d235b12803723a5dc119a48"
+        )
+          .then((reponse) => reponse.json())
+          .then((data) => {
+            //Basic call API
+            console.log(data);
+            let rate = data.rates.THB;
+
+            document.querySelector("#currency").innerHTML =
+              "1 EUR = " + rate.toFixed(2) + " Baht";
+
+            //Apply API
+
+            console.log(rate);
+
+            //ให้อ่านค่าจาก textbox เพื่อแปลงสกุลเงินไทย เป็นเงินยูโร
+            //1. เมื่อมีการกดปุ่ม Submit ที่ฟอร์ม
+            document.querySelector("form").onsubmit = function () {
+              //2. อ่านค่าจาก จำนวนเงินบาทจาก textbox
+              let thaibath = document.querySelector("#thaiBaht").value;
+
+              let country = document.querySelector("#country").value;
+              console.log(country);
+
+              //3. แปลงสกุลเงินบาท และยูโร
+              let euro = thaibath / rate;
+
+              //4. แสดงผลลัพธ์
+              document.querySelector("#result").innerHTML =
+                thaibath + " baht = " + euro.toFixed(2) + " EUR";
+              return false;
+            };
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <p id="currency"></p>
+    <form action="">
+      <label for="thaibath">ใส่จำนวนเงินไทย</label>
+      <input type="text" id="thaiBaht" />
+      <input type="radio" id="country" name="country" /> THB
+      <input type="radio" id="country" name="country" /> JPY
+      <input type="submit" value="Convert to Euro" />
+    </form>
+
+    <p id="result"></p>
+  </body>
+</html>

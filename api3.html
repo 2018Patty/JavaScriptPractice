@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API</title>
+  </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        //ให้อ่านค่าจาก textbox เพื่อแปลงสกุลเงินไทย เป็นเงินยูโร
+        //1. เมื่อมีการกดปุ่ม Submit ที่ฟอร์ม
+        document.querySelector("form").onsubmit = function () {
+          //2. อ่านค่าจาก จำนวนเงินบาทจาก textbox
+          var thaibath = document.querySelector("#thaiBaht").value;
+
+          var to = "THB";
+          var from = "EUR";
+
+          console.log(thaibath);
+          console.log(to);
+          console.log(from);
+
+          var myHeaders = new Headers();
+          myHeaders.append("apikey", "wNunv2D3VEaKYwebkKr9u4HuK18uSLLf");
+
+          var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+            headers: myHeaders,
+          };
+
+          fetch(
+            "https://api.apilayer.com/exchangerates_data/convert?to=" +
+              to +
+              "&from=" +
+              from +
+              "&amount=" +
+              thaibath,
+            requestOptions
+          )
+            .then((reponse) => reponse.json())
+            .then((data) => {
+              //Basic call API
+              console.log(data);
+
+              // {success: true, query: {from: "EUR", to: "THB", amount: 600}, info: {timestamp: 1662308523, rate: 36.506868}, date: "2022-09-04", result: 21904.1208}
+
+              JSON;
+              let data = {
+                key: value,
+                key2: {
+                  id: 123,
+                  name: "patty",
+                },
+              };
+
+              data.key2.name;
+              //let rate = data.rates.THB;
+              // .then((response) => response.text())
+              // .then((result) => console.log(result))
+              // .catch((error) => console.log("error", error));
+              let rate = data.info.rate;
+              let euro = thaibath / rate;
+
+              console.log(rate);
+              document.querySelector("#currency").innerHTML =
+                "1 EUR = " + rate.toFixed(2) + " Baht";
+              document.querySelector("#result").innerHTML =
+                thaibath + " baht = " + euro.toFixed(2) + " EUR";
+            });
+          return false;
+        };
+      });
+    </script>
+
+    <form action="">
+      <label for="thaibath">ใส่จำนวนเงินไทย</label>
+      <input type="text" id="thaiBaht" />
+
+      <input type="submit" value="Convert" />
+    </form>
+    <p id="currency"></p>
+    <p id="result"></p>
+  </body>
+</html>
